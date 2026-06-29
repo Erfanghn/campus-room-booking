@@ -1,16 +1,46 @@
 #include <stdio.h>
-#include "room.h"       
-#include "booking.h"
+#include "room.h"
 
 int main() {
-    struct Room test_room = {"Classroom A", 30, "Lecture", 8, 18};
+   
+    struct Room campus_rooms[10];
+    int room_count = 0; 
 
-    struct Booking test_booking = {"Classroom A", "2026-06-30", 10, 12, "Data Analysis Lecture"};
+    FILE *file_ptr = fopen("rooms.txt", "r");
 
-    printf("Campus Room Booking Simulator Initialized!\n");
-    printf("--- Testing Data Structures ---\n");
-    printf("Loaded Room: %s (Capacity: %d, Type: %s)\n", test_room.name, test_room.capacity, test_room.type);
-    printf("Test Booking: Room %s on %s from %d:00 to %d:00\n", test_booking.room_name, test_booking.date, test_booking.start_hour, test_booking.end_hour);
+    
+    if (file_ptr == NULL) {
+        printf("Error: Could not open rooms.txt file!\n");
+        return 1; 
+    }
+
+    while (fscanf(file_ptr, "%s %d %s %d %d", 
+                  campus_rooms[room_count].name, 
+                  &campus_rooms[room_count].capacity, 
+                  campus_rooms[room_count].type, 
+                  &campus_rooms[room_count].open_hour, 
+                  &campus_rooms[room_count].close_hour) == 5) {
+        
+        room_count++; 
+        
+        
+        if (room_count >= 10) {
+            break;
+        }
+    }
+
+    fclose(file_ptr);
+    
+    printf("--- Successfully Loaded Rooms from File ---\n");
+    for (int i = 0; i < room_count; i++) {
+        printf("Room %d: %s | Capacity: %d | Type: %s | Hours: %02d:00-%02d:00\n", 
+               i + 1,
+               campus_rooms[i].name, 
+               campus_rooms[i].capacity, 
+               campus_rooms[i].type, 
+               campus_rooms[i].open_hour, 
+               campus_rooms[i].close_hour);
+    }
 
     return 0;
 }

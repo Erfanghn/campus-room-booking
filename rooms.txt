@@ -1,0 +1,3 @@
+Classroom_A 30 Lecture 8 18
+Lab_101 25 Laboratory 9 17
+Conference_Room 12 Meeting 10 16
