@@ -6,6 +6,9 @@ this programming C project is a text-based application designed to help manage a
 *   **Organizes Data:** Uses custom structures (`struct`) to hold information about campus rooms and user bookings.
 *   **Reads Files:** Automatically opens an external text file (`rooms.txt`) and loads the room data into the program.
 *   **Uses Functions:** The code is cleanly split into small, separate functions instead of putting everything in one place.
+*   **Searches Rooms:** Allows users to search for a specific room by its name to instantly view its seating capacity, type, and operating hours.
+*   **Validates Bookings:** Lets users create a new booking while verifying that the room exists and that the requested hours fall within the room's opening and closing times.
+*   **Prevents Conflicts:** Automatically loops through existing bookings to detect and block any overlapping time slots on the same date.
 
 ## How the Input File Works (`rooms.txt`)
 The program reads room details from a file named `rooms.txt`. Each line represents one room. To prevent code errors with spaces, underscores are used for room names:
