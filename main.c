@@ -127,6 +127,26 @@ void show_bookings(struct Booking bookings_array[], int booking_count) {
     }
 }
 
+void save_bookings_to_file(struct Booking bookings_array[], int booking_count) {
+    FILE *file_ptr = fopen("bookings.txt", "w");
+    
+    if (file_ptr == NULL) {
+        printf("[System Error]: Could not open bookings.txt for writing!\n");
+        return;
+    }
+
+    for (int i = 0; i < booking_count; i++) {
+        fprintf(file_ptr, "%s %s %d %d\n", 
+                bookings_array[i].room_name, 
+                bookings_array[i].date, 
+                bookings_array[i].start_hour, 
+                bookings_array[i].end_hour);
+    }
+
+    fclose(file_ptr);
+    printf("[System Notice]: All bookings saved permanently to bookings.txt.\n");
+}
+
 int main() {
     struct Room campus_rooms[10];
     struct Booking campus_bookings[50];
@@ -164,7 +184,10 @@ int main() {
         else if (choice == 4) {
             show_bookings(campus_bookings, booking_count);
         } 
-        else if (choice != 5) {
+        else if (choice == 5) {
+            save_bookings_to_file(campus_bookings, booking_count);
+        }
+        else {
             printf("\nInvalid choice. Try again.\n");
         }
     }
