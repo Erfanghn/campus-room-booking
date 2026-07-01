@@ -9,6 +9,7 @@ this programming C project is a text-based application designed to help manage a
 *   **Searches Rooms:** Allows users to search for a specific room by its name to instantly view its seating capacity, type, and operating hours.
 *   **Validates Bookings:** Lets users create a new booking while verifying that the room exists and that the requested hours fall within the room's opening and closing times.
 *   **Prevents Conflicts:** Automatically loops through existing bookings to detect and block any overlapping time slots on the same date.
+*   **Saves Progress:** Permanently saves all created bookings into a new file called `bookings.txt` right before the program exits.
 
 ## How the Input File Works (`rooms.txt`)
 The program reads room details from a file named `rooms.txt`. Each line represents one room. To prevent code errors with spaces, underscores are used for room names:
